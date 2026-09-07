@@ -2,7 +2,7 @@
 
 Built for my Mechatronics module (Year 2, University of Sheffield) as part of a 4-person team. My focus was the navigation firmware and arm control logic which included sensor integration, motor control, and the arm pen drawing routine.
 
-![Robot dimensions](media/4_5cm.png)
+![Robot dimensions](media/ProjectDimensions.png)
 
 ## What it does
 
