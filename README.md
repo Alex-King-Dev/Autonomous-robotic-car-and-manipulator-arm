@@ -18,3 +18,21 @@ The robot runs a fixed 18-state sequence to navigate a course: spins to position
 - MDF chassis, ball casters (front/back), 6x 1700mAh battery pack, breadboards for prototyping wiring
 
 ## Repo structure
+
+/firmware - MainCode.ino (Arduino sketch)
+/docs - final report, tender design drawing
+/media - dimensions photo, demo video
+
+## How it works
+
+`loop()` runs a state machine (see the `case` statements), each state is one leg of the course: turn, drive to a wall, correct heading, detect the coloured zone, stop, then hand off to the arm. Wheel correction is a simple proportional controller (`Kp`) comparing left/right encoder-derived angles to keep the robot driving straight between wall checks. The arm doesn't use inverse kinematics,  `thetaS1`/`thetaS2` are pre-computed waypoint arrays it steps through at a fixed interval (`waypointInterval`) to trace the drawing path, with `limitServoRate()` capping how fast each joint can move per cycle.
+
+## Building it yourself
+
+1. Wire per the component list in `/docs` (report Table 1/2 + Fig. 1 for pin layout).
+2. Run `/firmware/MainCode.ino` via Arduino IDE (Mega target board).
+3. Re-tune the ultrasonic thresholds (`firstWallThreshold`, etc.) and `Kp` for your own course dimensions, these were calibrated to our specific test track.
+
+## What I'd change
+
+The waypoint-array approach for the arm works but is brittle, any change to the course geometry means re-recording every point. Next time I'd implement actual inverse kinematics so the arm target could just be an (x, y) coordinate.
