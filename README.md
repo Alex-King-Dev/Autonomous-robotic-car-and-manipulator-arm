@@ -19,9 +19,9 @@ The robot runs a fixed 18-state sequence to navigate a course: spins to position
 
 ## Repo structure
 
-/firmware - MainCode.ino (Arduino sketch)
-/docs - final report, tender design drawing
-/media - dimensions photo, demo video
+- /firmware - MainCode.ino (Arduino sketch)
+- /docs - final report, tender design drawing
+- /media - dimensions photo, demo video
 
 ## How it works
 
